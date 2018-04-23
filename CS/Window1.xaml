@@ -1,0 +1,27 @@
+﻿<Window x:Class="WpfApplication1.Window1"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:dxc="http://schemas.devexpress.com/winfx/2008/xaml/charts"
+    Title="Window1" Height="491" Width="637" >
+    <Window.Resources>
+        <ResourceDictionary>
+            <XmlDataProvider x:Key="contacts" 
+                             Source="Contacts.xml" 
+                             XPath="/NewDataSet">
+            </XmlDataProvider>
+        </ResourceDictionary>
+    </Window.Resources>
+        <Grid>
+        <dxc:ChartControl Name="chartControl1">
+            <dxc:ChartControl.Diagram>
+                <dxc:XYDiagram2D>
+                    <dxc:XYDiagram2D.Series>
+                        <dxc:BarSideBySideSeries2D DataSource="{StaticResource contacts}"
+                                                   ArgumentDataMember="Contacts.LastName"
+                                                   ValueDataMember="Contacts.PaymentAmount"/>
+                    </dxc:XYDiagram2D.Series>
+                </dxc:XYDiagram2D>
+            </dxc:ChartControl.Diagram>
+        </dxc:ChartControl>
+    </Grid>
+</Window>
